@@ -29,4 +29,17 @@ public class EulerTest {
         long actual = euler.problem3();
         assertEquals(6857L, actual);
     }
+
+    @Test
+    public void testProblem4() {
+        long actual = euler.problem4();
+        assertEquals(906609L, actual);
+    }
+
+    @Test
+    public void testProblem5() {
+        long actual = euler.problem5();
+        assertEquals(232792560L, actual);
+    }
+
 }

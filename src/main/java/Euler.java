@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 
 public class Euler {
@@ -32,6 +33,49 @@ public class Euler {
             }
         }
         return 1L;
+    }
+
+    long problem4() {
+        long max = 0L;
+        for (long i = 100; i < 1000L; i++) {
+            for (long j = i; j < 1000L; j++) {
+                long n = i * j;
+                if (isPalindromeNumber(n) && n > max)
+                    max = n;
+            }
+        }
+        return max;
+    }
+
+    long problem5() {
+        for (long i = 2520L; true; i += 20) {
+            if (isDivisibleByRange(i, 3, 20)) {
+                return i;
+            }
+        }
+    }
+
+    boolean isDivisibleByRange(long candidate, long rangeStart, long rangeEnd) {
+        for (long i = rangeStart; i < rangeEnd; i++) {
+            if (candidate % i != 0)
+                return false;
+        }
+        return true;
+    }
+
+    boolean isPalindromeNumber(long n) {
+        ArrayList<Long> digits = new ArrayList<Long>();
+        while (n > 0) {
+            digits.add(n % 10);
+            n /= 10;
+        }
+
+        for (int i = 0; i < digits.size() / 2; i++) {
+            if (digits.get(i) != digits.get(digits.size() - i - 1)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     long nearestOddIntegerLessThanSquareRoot(long n) {
