@@ -26,14 +26,32 @@ public class Euler {
 
     long problem3() {
         long num = 600851475143L;
-        PrimeChecker p = new PrimeChecker();
-        long lpf = 1L;
-        for (long i = 3L; i * i < num; i += 2) {
-            if (num % i == 0 && p.isPrime(i)) {
-                lpf = i;
+        for (long i = nearestOddIntegerLessThanSquareRoot(num); i > 0; i -= 2) {
+            if (num % i == 0 && trialDivisionForPrime(i)) {
+                return i;
             }
         }
-        return lpf;
+        return 1L;
+    }
+
+    long nearestOddIntegerLessThanSquareRoot(long n) {
+        long i = 1L;
+        for (; i * i < n; i += 2);
+        return i;
+    }
+
+    boolean trialDivisionForPrime(long n) {
+        if (n == 1L || n == 2L) {
+            return true;
+        } else if (n % 2L == 0){
+            return false;
+        }
+        for (long div = 3L; div * div < n; div +=2) {
+            if (n % div == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
     class PrimeChecker {
